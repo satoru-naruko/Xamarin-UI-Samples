@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             xmlns:local="clr-namespace:App1.MarkupExtensions"
+             x:Class="App1.Views.MainPage"
+             Title="{Binding Title}">
+
+    <StackLayout HorizontalOptions="CenterAndExpand"
+                 VerticalOptions="CenterAndExpand">
+        <Label Text="Welcome to Xamarin Forms and Prism!" />
+        <Switch x:Name="canGoBack" />
+        <Entry x:Name="param" />
+        <Picker x:Name="pageTitlePicker" 
+                TextColor="Black"
+                Title="Select SamplePage..."
+                ItemsSource="{Binding PageTitles}"
+                ItemDisplayBinding="{x:Binding StringFormat='goto {0}'}"
+                SelectedItem="{Binding SlectedTitle, Mode=OneWayToSource}"
+                />
+        <Button Text="Navigate"
+                prism:Navigation.CanNavigate="{Binding IsToggled, Source={x:Reference canGoBack}}"
+                Command="{local:ExNavigateTo , Name={x:Reference param}}"
+                CommandParameter="{Binding SlectedTitle}" />
+        <!--CommandParameter="{Binding Text, Source={x:Reference param}}" />-->
+    </StackLayout>
+
+</ContentPage>

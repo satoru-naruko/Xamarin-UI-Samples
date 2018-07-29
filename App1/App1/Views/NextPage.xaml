@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             Title="{Binding Title}"
+             x:Class="App1.Views.NextPage">
+    <StackLayout>
+        <Label Text="NextPage" />
+        <Label Text="{Binding Text}" />
+        <Button Text="Back"
+                Command="{prism:GoBack}" />
+    </StackLayout>
+</ContentPage>
