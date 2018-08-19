@@ -6,10 +6,14 @@
 
   <ItemGroup>
     <PackageReference Include="Prism.Unity.Forms" Version="7.1.0.172-pre" />
+    <PackageReference Include="ReactiveProperty" Version="5.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.561732-pre4" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\ListViewSample.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
