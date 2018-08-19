@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:local="clr-namespace:App1.CustomCntrol"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="App1.Views.ListViewSample">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS">0,20,0,0</On>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="normalTemplate">
+                <ViewCell>
+                    <Label Text="{Binding Path=Name, StringFormat='Name is {0}'}" /> 
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="silverTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="★★"/>
+                        <Label Grid.Column="1" Text="{Binding Name}"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <local:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
+                SilverTemplate="{StaticResource silverTemplate}"
+                NormalTemplate="{StaticResource normalTemplate}"
+                />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+
+        <ListView x:Name="listView" ItemsSource="{Binding Path=Countrys.CountryNames}"
+                  VerticalOptions="FillAndExpand"
+                  ItemSelected="ListView_ItemSelected"
+                  SeparatorVisibility="Default">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Entry x:Name="countryName" />
+
+        <Button Text="Add"
+            Command="{Binding Path=AddCommand}"
+            CommandParameter="{Binding Text , Source={x:Reference countryName}}" />
+
+        <ListView x:Name="listViewTemplate"
+                  ItemTemplate="{StaticResource Key=personDataTemplateSelector}"
+                  />
+    </StackLayout>
+</ContentPage>
