@@ -33,7 +33,6 @@ namespace App1
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<NextPage>();
             containerRegistry.RegisterForNavigation<SliderSample>();
-            containerRegistry.RegisterForNavigation<ListViewSample>();
         }
     }
 }

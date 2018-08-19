@@ -17,8 +17,7 @@ namespace App1.ViewModels
     {
         "MainPage",
         "NextPage",
-        "SliderSample",
-        "ListViewSample"
+        "SliderSample"
     };
 
         /// <summary>
